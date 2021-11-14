@@ -1,7 +1,10 @@
 import warnings
 from pdbfixer import PDBFixer
-from simtk.openmm.vec3 import Vec3
-from simtk.openmm.app import PDBFile
+try:
+    from openmm.vec3 import Vec3
+except ImportError:
+    from simtk.openmm.vec3 import Vec3  # Old version
+from simtk.openmm.app import PDBFile  # .app is still under simtk.openmm? or is simtk fully depracated?
 
 from dockstream.loggers.target_preparation_logger import TargetPreparationLogger
 from dockstream.utils.dockstream_exceptions import TargetPreparationFailed

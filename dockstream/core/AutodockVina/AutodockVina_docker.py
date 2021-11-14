@@ -271,8 +271,11 @@ class AutodockVina(Docker, BaseModel):
                      _EE.VINA_SIZE_X, str(search_space.size_x),
                      _EE.VINA_SIZE_Y, str(search_space.size_y),
                      _EE.VINA_SIZE_Z, str(search_space.size_z),
-                     _EE.VINA_NUM_MODES, self.parameters.number_poses,
-                     _EE.VINA_LOG, path_log_file]
+                     _EE.VINA_NUM_MODES, self.parameters.number_poses]
+                     # --log has been depracated in the newer version of
+                     # vina. Now the ouput is directed to stdout:
+                     # https://github.com/ccsb-scripps/AutoDock-Vina/commit/406abddf6723f88eb796581051297f104ef7e289
+                     #  _EE.VINA_LOG, path_log_file]
 
         execution_result = self._ADV_executor.execute(command=_EE.VINA,
                                                       arguments=arguments,
